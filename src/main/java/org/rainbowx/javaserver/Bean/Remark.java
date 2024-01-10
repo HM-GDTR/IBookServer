@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(schema = "remark")
+@Table(name = "remark")
 public class Remark {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,7 @@ public class Remark {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @SuppressWarnings("unused")
     protected Remark(int rid, Article article, LocalDateTime time, User author, String content) {
         this.rid = rid;
         this.article = article;
@@ -35,6 +36,7 @@ public class Remark {
         return rid;
     }
 
+    @SuppressWarnings("unused")
     public Article getArticle() {
         return article;
     }

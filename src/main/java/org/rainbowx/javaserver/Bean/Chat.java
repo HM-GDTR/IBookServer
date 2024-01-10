@@ -3,7 +3,7 @@ package org.rainbowx.javaserver.Bean;
 import jakarta.persistence.*;
 
 @Entity
-@Table(schema = "chat")
+@Table(name = "chat")
 public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,7 @@ public class Chat {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @SuppressWarnings("unused")
     protected Chat(int cid, User source, User dest, String content) {
         this.cid = cid;
         this.source = source;

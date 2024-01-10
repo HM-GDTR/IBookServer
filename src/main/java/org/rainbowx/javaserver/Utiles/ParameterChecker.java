@@ -5,8 +5,8 @@ import com.alibaba.fastjson2.JSONObject;
 public class ParameterChecker {
     public static boolean check(JSONObject obj, String... argNames){
         for(String arg: argNames) {
-            if(!obj.containsKey(arg)) return false;
+            if(!obj.containsKey(arg)) return true;
         }
-        return true;
+        return false;
     }
 }

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 @Service
 public class UserService {
     private static final String TAG = "UserService";
-    protected static Logger logger;
+    protected static final Logger logger;
     protected UserRepository userRepository;
 
     static {

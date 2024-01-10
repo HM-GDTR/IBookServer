@@ -4,14 +4,12 @@ import org.rainbowx.javaserver.Bean.Article;
 import org.rainbowx.javaserver.Bean.Remark;
 import org.rainbowx.javaserver.Bean.User;
 import org.rainbowx.javaserver.DAO.ArticleRepository;
-import org.rainbowx.javaserver.DAO.ChatRepository;
 import org.rainbowx.javaserver.DAO.RemarkRepository;
 import org.rainbowx.javaserver.DAO.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +17,7 @@ import java.util.logging.Logger;
 @Service
 public class RemarkService {
     private static final String TAG = "RemarkService";
-    protected static Logger logger;
+    protected static final Logger logger;
     protected UserRepository userRepository;
     protected RemarkRepository remarkRepository;
     protected ArticleRepository articleRepository;

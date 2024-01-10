@@ -5,8 +5,8 @@ import java.util.TreeMap;
 import java.util.UUID;
 
 public class LoginMap {
-    protected static Map<Integer, String> Uid2Uuid;
-    protected static Map<String, Integer> Uuid2Uid;
+    protected static final Map<Integer, String> Uid2Uuid;
+    protected static final Map<String, Integer> Uuid2Uid;
 
     static {
         Uid2Uuid = new TreeMap<>();

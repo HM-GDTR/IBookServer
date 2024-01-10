@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HashUtils {
-    protected static Logger logger = Logger.getLogger("HashUtils");
+    protected static final Logger logger = Logger.getLogger("HashUtils");
     public static String calculateSHA256(String input) {
         try {
             // 获取 MessageDigest 实例，指定算法为 SHA-256

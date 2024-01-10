@@ -20,8 +20,8 @@ import java.util.logging.Logger;
 
 @RestController
 public class UserController {
-    UserService userService;
-    Logger logger = Logger.getLogger("UserController");
+    final UserService userService;
+    final Logger logger = Logger.getLogger("UserController");
 
     @Autowired
     UserController(UserService service) {
@@ -34,7 +34,7 @@ public class UserController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uname", "passwd")) {
+        if(ParameterChecker.check(requestBody, "uname", "passwd")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -53,7 +53,6 @@ public class UserController {
             inputPassWd = passWd + user.getPassSalt();
             inputSha256 = HashUtils.calculateSHA256(inputPassWd);
         } else {
-            inputPassWd = "";
             correctSha256 = "";
             inputSha256 = "no";
         }
@@ -83,7 +82,7 @@ public class UserController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uname", "passwd")) {
+        if(ParameterChecker.check(requestBody, "uname", "passwd")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -119,7 +118,7 @@ public class UserController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid", "passwd")) {
+        if(ParameterChecker.check(requestBody, "uuid", "passwd")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -163,7 +162,7 @@ public class UserController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid")) {
+        if(ParameterChecker.check(requestBody, "uuid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -208,7 +207,7 @@ public class UserController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uid")) {
+        if(ParameterChecker.check(requestBody, "uid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -246,7 +245,7 @@ public class UserController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid")) {
+        if(ParameterChecker.check(requestBody, "uuid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -274,7 +273,7 @@ public class UserController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid")) {
+        if(ParameterChecker.check(requestBody, "uuid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;

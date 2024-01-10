@@ -3,10 +3,9 @@ package org.rainbowx.javaserver.Bean;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
-@Table(schema = "user")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +21,6 @@ public class User {
     private String avatar;
     @Column(length = 50)
     private String nickName;
-    @Column(length = 255)
     private String sign;
     private LocalDateTime birthday;
     @Column(length = 50)
@@ -50,6 +48,7 @@ public class User {
         return uid;
     }
 
+    @SuppressWarnings("unused")
     public String getUserName() {
         return userName;
     }

@@ -3,10 +3,9 @@ package org.rainbowx.javaserver.Bean;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
-@Table(schema = "article")
+@Table(name = "article")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +19,7 @@ public class Article {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @SuppressWarnings("unused")
     protected Article(int aid, User author, String title, LocalDateTime time, String content) {
         this.aid = aid;
         this.author = author;

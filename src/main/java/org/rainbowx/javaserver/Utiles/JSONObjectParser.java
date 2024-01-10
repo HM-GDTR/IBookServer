@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JSONObjectParser {
-    public static Logger logger = Logger.getLogger("JSONObjectParser");
+    public static final Logger logger = Logger.getLogger("JSONObjectParser");
     public static JSONObject parseToJSONObject(String jsonStr){
         if(jsonStr == null) return null;
         JSONObject ret;

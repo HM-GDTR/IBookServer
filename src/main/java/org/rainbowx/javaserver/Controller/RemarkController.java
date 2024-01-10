@@ -2,10 +2,7 @@ package org.rainbowx.javaserver.Controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import org.rainbowx.javaserver.Bean.Article;
 import org.rainbowx.javaserver.Bean.Remark;
-import org.rainbowx.javaserver.DAO.RemarkRepository;
-import org.rainbowx.javaserver.Service.ArticleService;
 import org.rainbowx.javaserver.Service.RemarkService;
 import org.rainbowx.javaserver.Utiles.JSONObjectParser;
 import org.rainbowx.javaserver.Utiles.LoginMap;
@@ -20,8 +17,8 @@ import java.util.logging.Logger;
 
 @RestController
 public class RemarkController {
-    RemarkService remarkService;
-    Logger logger = Logger.getLogger("RemarkController");
+    final RemarkService remarkService;
+    final Logger logger = Logger.getLogger("RemarkController");
     public RemarkController(RemarkService service){
         this.remarkService = service;
     }
@@ -32,7 +29,7 @@ public class RemarkController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "aid", "uuid", "content")) {
+        if(ParameterChecker.check(requestBody, "aid", "uuid", "content")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -72,7 +69,7 @@ public class RemarkController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid", "aid")) {
+        if(ParameterChecker.check(requestBody, "uuid", "aid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -120,7 +117,7 @@ public class RemarkController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "rid", "uuid", "content")) {
+        if(ParameterChecker.check(requestBody, "rid", "uuid", "content")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -159,7 +156,7 @@ public class RemarkController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid", "rid")) {
+        if(ParameterChecker.check(requestBody, "uuid", "rid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;

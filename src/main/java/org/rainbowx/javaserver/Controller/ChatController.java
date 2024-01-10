@@ -3,10 +3,7 @@ package org.rainbowx.javaserver.Controller;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import org.rainbowx.javaserver.Bean.Chat;
-import org.rainbowx.javaserver.Bean.User;
 import org.rainbowx.javaserver.Service.ChatService;
-import org.rainbowx.javaserver.Service.UserService;
-import org.rainbowx.javaserver.Utiles.HashUtils;
 import org.rainbowx.javaserver.Utiles.JSONObjectParser;
 import org.rainbowx.javaserver.Utiles.LoginMap;
 import org.rainbowx.javaserver.Utiles.ParameterChecker;
@@ -21,8 +18,8 @@ import java.util.logging.Logger;
 
 @RestController
 public class ChatController {
-    ChatService chatService;
-    Logger logger = Logger.getLogger("ChatController");
+    final ChatService chatService;
+    final Logger logger = Logger.getLogger("ChatController");
 
     @Autowired
     public ChatController(ChatService service) {
@@ -35,7 +32,7 @@ public class ChatController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid", "target", "content")) {
+        if(ParameterChecker.check(requestBody, "uuid", "target", "content")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -77,7 +74,7 @@ public class ChatController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid")) {
+        if(ParameterChecker.check(requestBody, "uuid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -109,28 +106,7 @@ public class ChatController {
             ret.put("code", 0);
             ret.put("reason", "ok");
 
-            JSONArray res = new JSONArray();
-            for (Chat chat: chats) {
-                int other,order;
-                JSONObject obj = new JSONObject();
-
-                obj.put("cid", chat.getCid());
-
-                if(chat.getSource().getUid() == uid) {
-                    order = 1;
-                    other = chat.getDest().getUid();
-                }
-                else {
-                    order = -1;
-                    other = chat.getSource().getUid();
-                }
-
-                obj.put("other", other);
-                obj.put("order", order);
-                obj.put("content", chat.getContent());
-
-                res.add(obj);
-            }
+            JSONArray res = getRes(chats, uid);
 
             ret.put("res", res);
         }
@@ -138,5 +114,31 @@ public class ChatController {
         logger.log(Level.INFO, requestBody.toString());
 
         return ret;
+    }
+
+    private static JSONArray getRes(List<Chat> chats, int uid) {
+        JSONArray res = new JSONArray();
+        for (Chat chat: chats) {
+            int other,order;
+            JSONObject obj = new JSONObject();
+
+            obj.put("cid", chat.getCid());
+
+            if(chat.getSource().getUid() == uid) {
+                order = 1;
+                other = chat.getDest().getUid();
+            }
+            else {
+                order = -1;
+                other = chat.getSource().getUid();
+            }
+
+            obj.put("other", other);
+            obj.put("order", order);
+            obj.put("content", chat.getContent());
+
+            res.add(obj);
+        }
+        return res;
     }
 }

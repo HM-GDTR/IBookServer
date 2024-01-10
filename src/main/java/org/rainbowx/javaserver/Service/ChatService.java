@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Service
 public class ChatService {
     private static final String TAG = "ChatService";
-    protected static Logger logger;
+    protected static final Logger logger;
     protected ChatRepository chatRepository;
     protected UserRepository userRepository;
 
@@ -77,12 +77,7 @@ public class ChatService {
             List<Chat> rList = chatRepository.findChatsBySourceAndDest(rh, lh);
             ret.addAll(lList);
             ret.addAll(rList);
-            ret.sort(new Comparator<Chat>() {
-                @Override
-                public int compare(Chat lh, Chat rh) {
-                    return Integer.compare(lh.getCid(), rh.getCid());
-                }
-            });
+            ret.sort(Comparator.comparingInt(Chat::getCid));
             return ret;
         }
         catch (Exception e) {

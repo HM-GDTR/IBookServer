@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
     Article findArticleByAid(int aid);
+    @SuppressWarnings("unused")
     List<Article> findArticlesByAuthor(User author);
     List<Article> findArticlesByAidNotNull();
 }

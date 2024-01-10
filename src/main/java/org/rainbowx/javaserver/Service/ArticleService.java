@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @Service
 public class ArticleService {
     private static final String TAG = "ArticleService";
-    protected static Logger logger;
+    protected static final Logger logger;
     protected UserRepository userRepository;
     protected ArticleRepository articleRepository;
 

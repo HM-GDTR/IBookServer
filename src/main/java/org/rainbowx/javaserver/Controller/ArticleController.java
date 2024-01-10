@@ -17,8 +17,8 @@ import java.util.logging.Logger;
 
 @RestController
 public class ArticleController {
-    ArticleService articleService;
-    Logger logger = Logger.getLogger("ArticleController");
+    final ArticleService articleService;
+    final Logger logger = Logger.getLogger("ArticleController");
 
     public ArticleController(ArticleService service){
         this.articleService = service;
@@ -30,7 +30,7 @@ public class ArticleController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid", "title", "content")) {
+        if(ParameterChecker.check(requestBody, "uuid", "title", "content")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -69,13 +69,13 @@ public class ArticleController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid")) {
+        if(ParameterChecker.check(requestBody, "uuid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
         }
 
-        String uuid, title, content;
+        String uuid;
         uuid = requestBody.getString("uuid");
 
         if(!LoginMap.contains(uuid)){
@@ -116,7 +116,7 @@ public class ArticleController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid", "aid", "content")) {
+        if(ParameterChecker.check(requestBody, "uuid", "aid", "content")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
@@ -155,7 +155,7 @@ public class ArticleController {
         JSONObject ret = JSONObjectParser.getPreparedResult(requestBody);
         if (requestBody == null) return ret;
 
-        if(!ParameterChecker.check(requestBody, "uuid", "aid")) {
+        if(ParameterChecker.check(requestBody, "uuid", "aid")) {
             ret.put("code", -1);
             ret.put("reason", "参数错误");
             return ret;
